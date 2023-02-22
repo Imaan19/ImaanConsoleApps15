@@ -8,7 +8,7 @@ namespace ConsoleAppProject
     /// to start App01 to App05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Imaan Majid 05/02/2022
+    /// Imaan Majid 22/02/2023
     /// </summary>
     public static class Program
     {
@@ -23,7 +23,10 @@ namespace ConsoleAppProject
             Console.WriteLine();
 
             DistanceConverter converter = new DistanceConverter();
-            //converter.run();
+
+            converter.MilesToFeet();
+            converter.FeetToMiles();
+            converter.MilesToMetres();
         }
     }
 }

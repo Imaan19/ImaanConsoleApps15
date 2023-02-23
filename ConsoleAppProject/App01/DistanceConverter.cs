@@ -4,7 +4,7 @@ using System.Reflection.Metadata.Ecma335;
 namespace ConsoleAppProject.App01
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// This class will convert distance units.
     /// </summary>
     /// <author>
     /// Imaan Majid version 0.1
@@ -16,11 +16,19 @@ namespace ConsoleAppProject.App01
 
         public const double METRES_IN_MILES = 1609.34;
 
-        private double miles;
+        public double miles;
 
-        private double feet; 
+        public double feet; 
 
-        private double metres;
+        public double metres;
+
+        public double ToDistance;
+        public double FromDistance;
+        
+
+        public string ToUnit;
+        public string FromUnit;
+       
 
 
         /// <summary>
@@ -30,23 +38,27 @@ namespace ConsoleAppProject.App01
         /// </summary>
 
         public void Run()
-            (
-                 OutputHeading();
-                 InputMiles();
-                 CalculateFeet();
-                 OutputFeet();
-#            )
+        {
+            OutputHeading("");
+            InputMiles();
+            CalculateFeet();
+            OutputFeet();
+        }
 
-        private void OutputHeading()
-            (
-                 Console.WriteLine("\n-------------------------------");
-                 Console.WriteLine("      Convert miles to feet         ");
-                 Console.WriteLine("         by Imaan Majid             ");
-                 Console.WriteLine("-------------------------------\n");
+        /// <summary>
+        /// 
+        /// </summary>
 
-                 Console.WriteLine(prompt);
-                 Console.WriteLine();
-            )
+        private void OutputHeading(String prompt)
+        {
+            Console.WriteLine("\n-------------------------------");
+            Console.WriteLine("       Distance Converter        ");
+            Console.WriteLine("         by Imaan Majid             ");
+            Console.WriteLine("-------------------------------\n");
+
+            Console.WriteLine(prompt);
+            Console.WriteLine();
+        }
 
 
         /// <summary>
@@ -54,51 +66,66 @@ namespace ConsoleAppProject.App01
         /// Input the miles as a double number
         /// </summary>
 
-            private void InputMiles()
-            (
-                Console.Write("Please enter the number of miles > ");
-                string value = Console.Readline();
-                miles = Convert.ToDouble(value); 
-            )
+        private void InputMiles()
+            {
+            Console.Write("Please enter the number of miles > ");
+            string value = Console.ReadLine();
+            miles = Convert.ToDouble(value);
+            }
+           
 
             private void CalculateFeet()
-            (
+            {
                 feet = miles * 5280;
-            )
+            }
 
-            private void OutputDistance()
-            (
+            private void CalculateMetres()
+            {
+                
+            }
+
+
+        private void OutputFeet()
+            {
                 Console.WriteLine(miles + " miles is " + feet + " feet!");
-            )
+            }
 
+            private void OutputMiles()
+            {
+                Console.WriteLine(feet + " feet is " + miles + " miles!");
+            }
 
+            private void OutputMetres()
+            {
+                Console.WriteLine(miles + " miles is " + metres + " metres!");
+            }
             public void MilesToFeet()
-            (
+            {
                  OutputHeading(" Converting Miles to Feet");
 
                  miles = InputDistance(" Please enter the number of miles > ");
                  CalculateFeet();
                  OutputFeet();
-            )
+            }
             
             public void FeetToMiles()
-            (
+            {
                    OutputHeading("Converting Feet to Miles");
-                   
+  
                    feet = InputDistance(" Please enter the number of feet > ");
                    CalculateMiles();
                    OutputMiles();
-            )
-            
+            }
+             
             public void MilesToMetres()
-            (
-                   OutputHeading("Converting Miles to Metres");
-                   
-                   miles = InputDistance(" Please enter the number of miles > ");
-                   CalculateMetres();
-                   OutputMetres();
-            )
+            {
+                  OutputHeading("Converting Miles to Metres");
 
+                  miles = InputDistance(" Please enter the number of miles > ");
+                  CalculateMetres();
+                  OutputMetres();
+            }
+            
             /// <summary>
             /// Prompt the user to enter the distance in miles 
             /// Input the miles as a double number
@@ -106,34 +133,25 @@ namespace ConsoleAppProject.App01
             /// 
 
             private double InputDistance(string prompt)
-            (
+            {
                    Console.Write(prompt);
                    string value = Console.ReadLine();
                    return Convert.ToDouble(value);
-            )
+            }
+            
 
             /// <summary>
             /// 
             /// </summary>
             
-            private void  CalculateFeet()
-            (
-                  feet = miles * FEET_IN_MILES; 
-            )
-            
-            /// <summary>
-            /// 
-            /// </summary>
-            
-                  private void OutputHeading(String prompt)
-            (
-                 Console.WriteLine("\n-------------------------------");
-                 Console.WriteLine("       Distance Converter        ");
-                 Console.WriteLine("         by Imaan Majid             ");
-                 Console.WriteLine("-------------------------------\n");
+            private void CalculateMiles()
+            {
+                  feet = miles * FEET_IN_MILES;
+            }
 
-                 Console.WriteLine(prompt);
-                 Console.WriteLine();
-            )
+        public void ConvertDistance()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

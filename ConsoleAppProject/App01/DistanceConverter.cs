@@ -37,7 +37,6 @@ namespace ConsoleAppProject.App01
         /// distance in feet.
         /// </summary>
 
-        public void Run()
         {
             OutputHeading("");
             InputMiles();
@@ -45,9 +44,6 @@ namespace ConsoleAppProject.App01
             OutputFeet();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
 
         private void OutputHeading(String prompt)
         {
@@ -76,7 +72,7 @@ namespace ConsoleAppProject.App01
 
             private void CalculateFeet()
             {
-                feet = miles * 5280;
+                feet = miles * FEET_IN_MILES;
             }
 
             private void CalculateMetres()

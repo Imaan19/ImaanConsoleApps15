@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+using ConsoleAppProject.Helpers;
 
 namespace ConsoleAppProject.App02
 {
@@ -12,79 +14,212 @@ namespace ConsoleAppProject.App02
     /// </author>
     public class BMI
     {
-        private void Run()
+        public const double Underweight = 18.50;
+        public const double Normal = 24.9;
+        public const double Overweight = 29.9;
+        public const double ObeseLevelI = 34.9;
+        public const double ObeseLevelII = 39.9;
+        public const double ObeseLevelIII = 40.0;
+
+        public const int InchesinFeet = 12;
+        public const int PoundsinStones = 14;
+
+        public double Index { get; set; }
+
+        // Metric Details
+
+        public double Kilograms { get; set; }
+        public int Centimetres { get; set; }
+
+        // Imperial Details
+
+        public int Stones { get; set; }
+        public int Pounds { get; set; }
+        public int Feet { get; set; }
+        public int Inches { get; set; }
+
+        public UnitSystems UnitSystems
         {
+            get => default; 
+        }
+        public bool BameMessage { get; private set; }
 
-            Console.Write(" Enter your weight in (kg): ");
-            double kg = Convert.ToDouble(Console.ReadLine());
-            Console.Write(" Enter your height in (m): ");
-            double height = Convert.ToDouble(Console.ReadLine());
+        private double metres;
 
-            double BMI = kg / (height * height);
-            Console.WriteLine(" Your BMI is: " + Math.Round(BMI, 2));
-            Console.ReadKey();
+        /// <summary>
+        /// Prompt the user to select Imperial or Metric units.
+        /// Input the user's height and weight and then calculate
+        /// their BMI value, and output their weight category.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        /// 
 
-            if (BMI < 18.50)
+        public void CalculateIndex()
+        {
+            ConsoleHelper.OutputHeading("Body Mass Index Calculator");
+
+            UnitSystems unisystem = SelectUnits();
+
+            if (UnitSystems == UnitSystems.Metric)
             {
-                Console.WriteLine(" You are Underweight ");
+                InputMetricDetails();
+                CalculateMetricBMI();
             }
-            else if (BMI >= 18.5 && BMI < 24.9)
+            else
             {
-                Console.WriteLine(" You are Normal ");
+                InputImperialDetails();
+                CalculateImperialBMI();
             }
-            else if (BMI >= 25.0 && BMI < 29.9)
+            Console.WriteLine(GetHealthMessage());
+            Console.WriteLine(GetBameMessage());
+        }
+
+        public void CalculateMetricBMI()
+        {
+            Index = Kilograms / (metres * metres);
+        }
+
+        public void CalculateImperialBMI()
+        {
+            Inches += Feet * InchesinFeet;
+            Pounds += Stones * PoundsinStones;
+
+            Index = (double)Pounds * 703 / (Inches * Inches);
+        }
+
+        /// <summary>
+        /// Prompt the user to select Imperial or Metric
+        /// units for entering their height and weight.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+
+        private UnitSystems SelectUnits()
+        {
+            string[] choices = new string[]
             {
-                Console.WriteLine(" You are Overweight ");
+                "Metric Units",
+                "Imperial Units"
+            };
+
+            int choice = ConsoleHelper.SelectChoice(choices);
+
+            if (choice == 1)
+            {
+                return UnitSystems.Metric;
             }
-            else if (BMI >= 30.0 && BMI < 34.9)
+            else return UnitSystems.Imperial;
+        }
+
+        /// <summary>
+        /// Input the users height in feet and inches
+        /// and their weight in stones and pounds.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+
+        private void InputImperialDetails()
+        {
+            Console.WriteLine(" Enter your height to the nearest feet and inches > ");
+            Console.WriteLine();
+
+            Feet = (int)ConsoleHelper.InputNumber("\n Enter your height in feet > ");
+            Inches = (int)ConsoleHelper.InputNumber(" Enter your height in inches > ");
+
+            Console.WriteLine();
+            Console.WriteLine(" Enter your weight to the nearest stones and pounds");
+            Console.WriteLine();
+
+            Stones = (int)ConsoleHelper.InputNumber(" Enter your weight in stones > ");
+            Pounds = (int)ConsoleHelper.InputNumber(" Enter your weight in pounds > ");
+        }
+
+        /// <summary>
+        /// Input the users height in metres
+        /// and their weight in kilograms. 
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+
+        private void InputMetricDetails()
+        {
+            Centimetres = (int)ConsoleHelper.InputNumber(
+                " \n Enter your height in centimetres > ");
+
+            metres = (double)Centimetres / 100;
+
+            Kilograms = ConsoleHelper.InputNumber(
+                " Enter your weight in Kilograms > ");
+        }
+
+        /// <summary>
+        /// Output the users BMI and their weight 
+        /// category from underweight to obese. 
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+
+        public string GetHealthMessage()
+        {
+            StringBuilder message = new StringBuilder("\n");
+
+            if (Index < Underweight)
             {
-                Console.WriteLine(" You are Obese class I ");
+                message.Append($" Your BMI is {Index:0.00}, " +
+                    $" You are Underweight! ");
+
             }
-            else if (BMI >= 35.0 && BMI < 39.9)
+            else if (Index <= Normal)
             {
-                Console.WriteLine(" You are Obese class II ");
+                message.Append($" Your BMI is {Index:0.00}, " +
+                    $" You are Normal! ");
+
             }
-            else if (BMI >= 40.0)
+            else if (Index <= Overweight)
             {
-                Console.WriteLine(" You are Obese class III ");
+                message.Append($" Your BMI is {Index:0.00}, " +
+                    $" You are Overweight! ");
+
             }
-            /// <summary>
-            /// If BMI is < 18.50, You are Underweight
-            /// If BMI is >= 18.5 and < 24.9, You are Normal
-            /// If BMI is >= 25.0 and < 29.9, You are Overweight
-            /// If BMI is >= 30.0 and < 34.9, You are Obese class I
-            /// If BMI is >= 35.0 and < 39.9, You are Obese class II
-            /// If BMI is >= 40.0, You are Obese class III
-            /// </summary>
+            else if (Index <= ObeseLevelI)
             {
-                OutputBameMessage();
+                message.Append($" Your BMI is {Index:0.00}, " +
+                    $" You are Obese Class I! ");
+
+            }
+            else if (Index <= ObeseLevelII)
+            {
+                message.Append($" Your BMI is {Index:0.00}, " +
+                    $" You are Obese Level II! ");
+
+            }
+            else if (Index <= ObeseLevelIII)
+            {
+                message.Append($" Your BMI is {Index:0.00}, " +
+                    $" You are Obese Level III! ");
+
             }
 
+            return message.ToString();
+        }
 
-            /// <summary>
-            /// Output a message for BAME users who are
-            /// at higher risk
-            /// </summary>
+        /// <summary>
+        /// Output a message for BAME users who 
+        /// are at a higher risk.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
 
-            private void OutputBameMessage()
-            {
-                Console.WriteLine();
-                Console.WriteLine(" If you are Black, Asian or other minority");
-                Console.WriteLine(" ethnic groups, you have a higher risk");
-                Console.WriteLine();
-                Console.WriteLine("\t Adults 23.0 or more are at increased risk");
-                Console.WriteLine("\t Adults 27.5 or more are at high risk");
-                Console.WriteLine();
-
-                public double InputNumber(string prompt)
-                {
-                    Console.Write(prompt);
-                    string value = Console.ReadLine();
-                    double number = Convert.ToDouble(value);
-
-                    return number;
-                }
-            }
+        public string GetBameMessage()
+        {
+                StringBuilder message = new StringBuilder("\n");
+                message.Append(" If you are Black, Asian or other minority");
+                message.Append(" ethnic groups, you have a higher risk");
+                message.Append("\n");
+                message.Append("\t Adults 23.0 or more are at increased risk");
+                message.Append("\t Adults 27.5 or more are at high risk");
         }
     }
+
+    public class UnitSystems
+    {
+        public UnitSystems Metric { get; internal set; }
+        public UnitSystems Imperial { get; internal set; }
+    }
+
 }

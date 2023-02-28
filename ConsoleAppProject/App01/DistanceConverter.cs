@@ -30,6 +30,9 @@ namespace ConsoleAppProject.App01
         public string ToUnit;
         public string FromUnit;
 
+        public double ToDistance { get; set; }
+        public int FromDistance { get; set; }
+
         public DistanceConverter()
         {
             FromUnit = MILES;

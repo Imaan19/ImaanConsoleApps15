@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using ConsoleAppProject.Helpers;
 
@@ -58,7 +59,7 @@ namespace ConsoleAppProject.App02
         {
             ConsoleHelper.OutputHeading("Body Mass Index Calculator");
 
-            UnitSystems unisystem = SelectUnits();
+            UnitSystems unitsystem = SelectUnits();
 
             if (UnitSystems == UnitSystems.Metric)
             {
@@ -71,7 +72,7 @@ namespace ConsoleAppProject.App02
                 CalculateImperialBMI();
             }
             Console.WriteLine(GetHealthMessage());
-            Console.WriteLine(GetBameMessage());
+
         }
 
         public void CalculateMetricBMI()
@@ -91,7 +92,6 @@ namespace ConsoleAppProject.App02
         /// Prompt the user to select Imperial or Metric
         /// units for entering their height and weight.
         /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
 
         private UnitSystems SelectUnits()
         {
@@ -204,16 +204,10 @@ namespace ConsoleAppProject.App02
         /// are at a higher risk.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
+        /// 
 
-        public string GetBameMessage()
-        {
-                StringBuilder message = new StringBuilder("\n");
-                message.Append(" If you are Black, Asian or other minority");
-                message.Append(" ethnic groups, you have a higher risk");
-                message.Append("\n");
-                message.Append("\t Adults 23.0 or more are at increased risk");
-                message.Append("\t Adults 27.5 or more are at high risk");
-        }
+
+
     }
 
     public class UnitSystems

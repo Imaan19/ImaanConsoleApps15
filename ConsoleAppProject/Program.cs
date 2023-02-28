@@ -42,8 +42,10 @@ namespace ConsoleAppProject
             {
                 Calculator.CalculateIndex();
             }
-            else Console.WriteLine(" Invalid Choice !");
-
+            else
+            {
+                Console.WriteLine(" Invalid Choice !");
+            }
         }
     }
 }

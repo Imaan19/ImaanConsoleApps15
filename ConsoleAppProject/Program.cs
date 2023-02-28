@@ -40,7 +40,8 @@ namespace ConsoleAppProject
             }
             else if (choice == "2")
             {
-                Calculator.CalculateIndex();
+                //Calculator.CalculateIndex();
+                Console.WriteLine("lol");
             }
             else
             {

@@ -39,9 +39,9 @@ namespace ConsoleAppProject.App02
         public int Feet { get; set; }
         public int Inches { get; set; }
 
-        public UnitSystems UnitSystems
+        public enum UnitSystems
         {
-            get => default; 
+            Metric, Imperial 
         }
         public bool BameMessage { get; private set; }
 

@@ -40,8 +40,7 @@ namespace ConsoleAppProject
             }
             else if (choice == "2")
             {
-                //Calculator.CalculateIndex();
-                Console.WriteLine("lol");
+                BMI.CalculateIndex();
             }
             else
             {

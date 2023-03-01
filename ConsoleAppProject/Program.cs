@@ -16,9 +16,10 @@ namespace ConsoleAppProject
     {
         private static DistanceConverter converter = new DistanceConverter();
 
-        private static BMI Calculator = new BMI();
         public static void Main(string[] args)
         {
+            BMI calculator = new BMI();
+
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine();
@@ -40,7 +41,7 @@ namespace ConsoleAppProject
             }
             else if (choice == "2")
             {
-                BMI.CalculateIndex();
+                calculator.CalculateIndex();
             }
             else
             {

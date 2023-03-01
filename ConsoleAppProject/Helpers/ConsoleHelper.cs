@@ -11,7 +11,7 @@ namespace ConsoleAppProject.Helpers
     /// There are methods for outputting a main heading
     /// and a title.
     /// <author>
-    /// Derek Peacock 2021
+    /// Imaan Majid 2023
     /// </author>
     /// </summary>
     public static class ConsoleHelper

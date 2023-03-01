@@ -30,7 +30,7 @@ namespace ConsoleAppProject.App02
         // Metric Details
 
         public double Kilograms { get; set; }
-        public int Centimetres { get; set; }
+        public int Metres { get; set; }
 
         // Imperial Details
 
@@ -59,9 +59,9 @@ namespace ConsoleAppProject.App02
         {
             ConsoleHelper.OutputHeading("Body Mass Index Calculator");
 
-            UnitSystems unitsystem = SelectUnits();
+            UnitSystems unitSystem = SelectUnits();
 
-            if (UnitSystems == UnitSystems.Metric)
+            if (unitSystem == UnitSystems.Metric)
             {
                 InputMetricDetails();
                 CalculateMetricBMI();
@@ -140,10 +140,10 @@ namespace ConsoleAppProject.App02
 
         private void InputMetricDetails()
         {
-            Centimetres = (int)ConsoleHelper.InputNumber(
-                " \n Enter your height in centimetres > ");
+            Metres = (int)ConsoleHelper.InputNumber(
+                " \n Enter your height in metres > ");
 
-            metres = (double)Centimetres / 100;
+            metres = (double)Metres / 100;
 
             Kilograms = ConsoleHelper.InputNumber(
                 " Enter your weight in Kilograms > ");

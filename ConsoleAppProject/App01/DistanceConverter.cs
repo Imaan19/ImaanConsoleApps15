@@ -21,10 +21,6 @@ namespace ConsoleAppProject.App01
 
         public const double FEET_IN_METRES = 3.28084;
 
-        public const double
-
-
-
         public const string FEET = "Feet";
         public const string MILES = "Miles";
         public const string METRES = "Metres";
@@ -78,24 +74,10 @@ namespace ConsoleAppProject.App01
             {
                 return MILES;
             }
-            switch (choice)
-            {
-                case "1": unit = DistanceUnits.Feet; break;
-                case "2": unit = DistanceUnits.Metres; break;
-                case "3": unit = DistanceUnits.Miles; break;
 
-                default: unit = DistanceUnits.NoUnit; break;
-            }
+            return null;
 
-            if (unit == DistanceUnits.NoUnit)
-            {
-                Console.WriteLine(" Invalid Unit Choice!");
-                Console.WriteLine(" Must be a digit between 1 and 3");
-            }
-
-            return unit;
-
-        }
+        } 
 
         private static string DisplayChoices(string prompt)
         {

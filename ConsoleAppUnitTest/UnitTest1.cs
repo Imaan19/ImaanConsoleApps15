@@ -8,7 +8,7 @@ namespace ConsoleAppUnitTest
         public void TestMethod1()
         {
             DistanceConverter converter = new DistanceConverter();
-            converter.FromUnit = "feet";
+            converter.fromUnit = "feet";
             converter.ToUnit = "miles";
             converter.FromDistance = 10560;
 

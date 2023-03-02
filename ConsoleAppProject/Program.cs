@@ -1,6 +1,7 @@
 ﻿using System;
 using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
+using ConsoleAppProject.Helpers;
 
 namespace ConsoleAppProject
 {
@@ -28,18 +29,17 @@ namespace ConsoleAppProject
             Console.WriteLine(" =================================================");
             Console.WriteLine();
 
-            Console.WriteLine("1. Distance Converter");
-            Console.WriteLine("2. BMI Calculator");
+            string[] menu = new string[2];
+            menu[0] = " Distance Converter";
+            menu[1] = " BMI Calculator";
+            int choice = ConsoleHelper.SelectChoice(menu);
             Console.WriteLine();
 
-            Console.Write(" Please enter your choice of App > ");
-            string choice = Console.ReadLine();
-
-            if (choice == "1")
+            if (choice == 1)
             {
                 converter.ConvertDistance();
             }
-            else if (choice == "2")
+            else if (choice == 2)
             {
                 calculator.CalculateIndex();
             }

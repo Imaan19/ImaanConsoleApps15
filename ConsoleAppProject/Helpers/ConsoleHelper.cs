@@ -72,7 +72,7 @@ namespace ConsoleAppProject.Helpers
                     isValid = true;
                 }
                 catch (Exception)
-                {
+                {   
                     isValid = false;
                     Console.WriteLine(" INVALID NUMBER!");
                 }
@@ -125,7 +125,7 @@ namespace ConsoleAppProject.Helpers
 
             Console.WriteLine("\n ---------------------------------");
             Console.WriteLine($"    {heading}          ");
-            Console.WriteLine("     by Derek Peacock           ");
+            Console.WriteLine("         by Imaan Majid           ");
             Console.WriteLine(" ---------------------------------" +
                 "\n");
 

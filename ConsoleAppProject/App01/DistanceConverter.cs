@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Xml.Serialization;
 
 namespace ConsoleAppProject.App01
@@ -16,10 +18,10 @@ namespace ConsoleAppProject.App01
     {
 
         public const int FEET_IN_MILES = 5280;
-
         public const double METRES_IN_MILES = 1609.34;
-
         public const double FEET_IN_METRES = 3.28084;
+
+
 
         public const string FEET = "Feet";
         public const string MILES = "Miles";
@@ -74,8 +76,11 @@ namespace ConsoleAppProject.App01
             {
                 return MILES;
             }
-
-            return null;
+            else
+            {
+                Console.WriteLine(" Invalid Choice !");
+            }
+                return null;
 
         } 
 
@@ -106,8 +111,17 @@ namespace ConsoleAppProject.App01
         }
         private void OutputDistance()
         {
-            Console.WriteLine($"\n {fromDistance}  {fromUnit}" +
+            try
+            {
+                //doThings
+                Console.WriteLine($"\n {fromDistance}  {fromUnit}" +
                 $" is {toDistance} {ToUnit}!\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Issue with runtime");
+                throw ex;
+            }
         }
         // Convert Distance from a distance unit to a distance unit
         public void ConvertDistance()
@@ -126,7 +140,7 @@ namespace ConsoleAppProject.App01
             OutputDistance();
         }
         // Calculate Distance
-        private void CalculateDistance()
+        public void CalculateDistance()
         {
             if (fromUnit == MILES && ToUnit == FEET)
             {

@@ -7,8 +7,9 @@ namespace ConsoleAppProject.App02
 {
     /// <summary>
     /// Welcome to my BMI Calculator. 
-    /// This Application will tell you whether or not your Body mass index is good for
-    /// your height and weight or not once you type your height in metres and weight in kg.
+    /// This Application will give you the option to choose from 
+    /// using Metric or Imperial units to calculate your BMI value,
+    /// and output a BAME and Health message depending on your BMI.
     /// </summary>
     /// <author>
     /// Imaan Majid version 0.1
@@ -30,7 +31,7 @@ namespace ConsoleAppProject.App02
         // Metric Details
 
         public double Kilograms { get; set; }
-        public int Metres { get; set; }
+        public double Metres { get; set; }
 
         // Imperial Details
 
@@ -49,10 +50,8 @@ namespace ConsoleAppProject.App02
 
         /// <summary>
         /// Prompt the user to select Imperial or Metric units.
-        /// Input the user's height and weight and then calculate
-        /// their BMI value, and output their weight category.
         /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception> 
         /// 
 
         public void CalculateIndex()
@@ -71,15 +70,18 @@ namespace ConsoleAppProject.App02
                 InputImperialDetails();
                 CalculateImperialBMI();
             }
+
             Console.WriteLine(GetHealthMessage());
 
         }
-
+        // Calculate the metric BMI of the user
         public void CalculateMetricBMI()
         {
-            Index = Kilograms / (metres * metres);
+            Index = Kilograms / (Metres * Metres);
+            GetHealthMessage();
         }
 
+        // Calculate the Imperial BMI of the user
         public void CalculateImperialBMI()
         {
             Inches += Feet * InchesinFeet;
@@ -140,13 +142,12 @@ namespace ConsoleAppProject.App02
 
         private void InputMetricDetails()
         {
-            Metres = (int)ConsoleHelper.InputNumber(
-                " \n Enter your height in metres > ");
-
-            metres = (double)Metres / 100;
+            Console.Write(" Enter your height in metres: ");
+            Metres = Convert.ToDouble(Console.ReadLine());
 
             Kilograms = ConsoleHelper.InputNumber(
                 " Enter your weight in Kilograms > ");
+
         }
 
         /// <summary>
@@ -162,40 +163,39 @@ namespace ConsoleAppProject.App02
             if (Index < Underweight)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Underweight! ");
+                    $" You are Underweight! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
 
             }
             else if (Index <= Normal)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Normal! ");
-
+                    $" You are Normal! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
+                
             }
             else if (Index <= Overweight)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Overweight! ");
+                    $" You are Overweight! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
 
             }
             else if (Index <= ObeseLevelI)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Obese Class I! ");
+                    $" You are Obese Class I! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
 
             }
             else if (Index <= ObeseLevelII)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Obese Level II! ");
+                    $" You are Obese Level II! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
 
             }
             else if (Index <= ObeseLevelIII)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Obese Level III! ");
+                    $" You are Obese Level III! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
 
             }
-
             return message.ToString();
         }
 
@@ -205,9 +205,10 @@ namespace ConsoleAppProject.App02
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
         /// 
-
-
-
+        public string GetBameMessage()
+        {
+            return "If you are Black, Asian or other minority ethnic groups, you have a higher risk.";
+        }
     }
 
     public class UnitSystems

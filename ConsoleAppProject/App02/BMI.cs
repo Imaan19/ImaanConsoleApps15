@@ -14,6 +14,7 @@ namespace ConsoleAppProject.App02
     /// <author>
     /// Imaan Majid version 0.1
     /// </author>
+    // BMI Constants.
     public class BMI
     {
         public const double Underweight = 18.50;
@@ -54,6 +55,7 @@ namespace ConsoleAppProject.App02
         /// <exception cref="NotImplementedException"></exception> 
         /// 
 
+        // Calculate the users BMI depending on their choice of option.
         public void CalculateIndex()
         {
             ConsoleHelper.OutputHeading("Body Mass Index Calculator");
@@ -74,14 +76,14 @@ namespace ConsoleAppProject.App02
             Console.WriteLine(GetHealthMessage());
 
         }
-        // Calculate the metric BMI of the user
+        // Calculation for the Metric BMI of the user.
         public void CalculateMetricBMI()
         {
             Index = Kilograms / (Metres * Metres);
             GetHealthMessage();
         }
 
-        // Calculate the Imperial BMI of the user
+        // Calculatation for the Imperial BMI of the user.
         public void CalculateImperialBMI()
         {
             Inches += Feet * InchesinFeet;
@@ -152,7 +154,8 @@ namespace ConsoleAppProject.App02
 
         /// <summary>
         /// Output the users BMI and their weight 
-        /// category from underweight to obese. 
+        /// category, and displaying a health
+        /// message as well as a BAME message.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
 
@@ -200,8 +203,8 @@ namespace ConsoleAppProject.App02
         }
 
         /// <summary>
-        /// Output a message for BAME users who 
-        /// are at a higher risk.
+        /// Output a message for BAME users 
+        /// who are at a higher risk.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
         /// 

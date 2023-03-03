@@ -3,6 +3,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Xml.Serialization;
+using ConsoleAppProject.Helpers;
 
 namespace ConsoleAppProject.App01
 {
@@ -56,8 +57,8 @@ namespace ConsoleAppProject.App01
             ToUnit = FEET;
         }
         /// <summary>
-        /// This method will input the distance measured in either feet,
-        /// metres or miles and output the distance in feet, metres or miles.
+        /// This method will input the users choice of 6 
+        /// distances and output the users choice of 6 distances. 
         /// </summary>
         private void OutputHeading()
         {
@@ -70,6 +71,7 @@ namespace ConsoleAppProject.App01
         private string SelectUnit(string prompt)
         {
             string choice = DisplayChoices(prompt);
+
 
             string unit = ExecuteChoice(choice);
             Console.WriteLine($"\n You have chosen {unit}");
@@ -109,8 +111,8 @@ namespace ConsoleAppProject.App01
             }
                 return null;
 
-        } 
-
+        }
+        // Display choices of distances
         private static string DisplayChoices(string prompt)
         {
             Console.WriteLine();
@@ -139,6 +141,7 @@ namespace ConsoleAppProject.App01
             string value = Console.ReadLine();
             return Convert.ToDouble(value);
         }
+        // Output the Distance the user wants
         private void OutputDistance()
         {
             try
@@ -175,7 +178,7 @@ namespace ConsoleAppProject.App01
             CalculateDistance(fromUnit);
         }
 
-        // Calculate Distance
+        // Calculate Distances
         public void CalculateDistance(string fromUnit)
         {
             if (fromUnit == MILES && ToUnit == FEET)

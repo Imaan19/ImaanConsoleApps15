@@ -59,26 +59,36 @@ namespace ConsoleAppProject.Helpers
         public static double InputNumber(string prompt)
         {
             double number = 0;
-            bool isValid;
-
+            bool isValid = false; // Initialise isValid to false 
             do
             {
-                Console.Write(prompt);
-                string value = Console.ReadLine();
-
-                try
+                if (number <= 0)
                 {
-                    number = Convert.ToDouble(value);
-                    isValid = true;
+                    Console.Write(prompt);
+                    string value = Console.ReadLine();
+                    try
+                    {
+                        //Check for negative values
+                        if (value.StartsWith("-"))
+                        {
+                            Console.WriteLine(" Negative values are not allowed! ");
+                            isValid = false;
+                        }
+                        else
+                        {
+                            // Convert input string to double 
+                            number = Convert.ToDouble(value);
+                            isValid = true;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // Handle other exceptions
+                        isValid = false;
+                        Console.WriteLine(" INAVLID NUMBER! ");
+                    }
                 }
-                catch (Exception)
-                {   
-                    isValid = false;
-                    Console.WriteLine(" INVALID NUMBER!");
-                }
-
             } while (!isValid);
-
             return number;
         }
 

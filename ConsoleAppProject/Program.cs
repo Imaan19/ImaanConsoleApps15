@@ -21,7 +21,7 @@ namespace ConsoleAppProject
         {
             BMI calculator = new BMI();
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Cyan;
 
             Console.WriteLine();
             Console.WriteLine(" =================================================");
@@ -47,6 +47,7 @@ namespace ConsoleAppProject
             {
                 Console.WriteLine(" Invalid Choice !");
             }
+
         }
     }
 }

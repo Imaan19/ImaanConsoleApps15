@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
@@ -139,7 +140,16 @@ namespace ConsoleAppProject.App01
         {
             Console.Write(prompt);
             string value = Console.ReadLine();
-            return Convert.ToDouble(value);
+            
+            try
+            {
+                double distance = Convert.ToDouble(value);
+                return distance;
+            }
+            catch (FormatException)
+            {
+                throw new FormatException(" Error occured. ");
+            }
         }
         // Output the Distance the user wants
         private void OutputDistance()

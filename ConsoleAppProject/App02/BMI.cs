@@ -166,42 +166,47 @@ namespace ConsoleAppProject.App02
             if (Index < Underweight)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Underweight! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
+                    $" You are Underweight! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk." +
+                    $"\n Adults 23.0 or more are at a increased risk. " + $"\n Adults 27.5 or more are at a high risk.");
 
             }
             else if (Index <= Normal)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Normal! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
+                    $" You are Normal! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk." +
+                    $"\n Adults 23.0 or more are at a increased risk. " + $"\n Adults 27.5 or more are at a high risk.");
                 
             }
             else if (Index <= Overweight)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Overweight! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
+                    $" You are Overweight! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk." +
+                     $"\n Adults 23.0 or more are at a increased risk. " + $"\n Adults 27.5 or more are at a high risk.");
 
             }
             else if (Index <= ObeseLevelI)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Obese Class I! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
+                    $" You are Obese Class I! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk." +
+                     $"\n Adults 23.0 or more are at a increased risk. " + $"\n Adults 27.5 or more are at a high risk.");
 
             }
             else if (Index <= ObeseLevelII)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Obese Level II! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
+                    $" You are Obese Level II! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk." +
+                     $"\n Adults 23.0 or more are at a increased risk. " + $"\n Adults 27.5 or more are at a high risk.");
 
             }
             else if (Index <= ObeseLevelIII)
             {
                 message.Append($" Your BMI is {Index:0.00}, " +
-                    $" You are Obese Level III! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk.");
-
+                    $" You are Obese Level III! " + $"\n If you are Black, Asian or other minority ethnic groups, you have a higher risk." +
+                    $"\n Adults 23.0 or more are at a increased risk. " + $"\n Adults 27.5 or more are at a high risk.");
             }
             return message.ToString();
         }
-
+        
         /// <summary>
         /// Output a message for BAME users 
         /// who are at a higher risk.

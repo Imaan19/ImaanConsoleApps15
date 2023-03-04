@@ -215,6 +215,14 @@ namespace ConsoleAppProject.App02
         {
             return "If you are Black, Asian or other minority ethnic groups, you have a higher risk.";
         }
+
+        public App02.UnitSystems UnitSystems1
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 
     public class UnitSystems

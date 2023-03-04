@@ -24,7 +24,7 @@ namespace ConsoleAppProject.App01
         public const double FEET_IN_METRES = 3.28084;
         public const int METRES_IN_KILOMETRES = 1000;
         public const double FEET_IN_KILOMETRES = 3280.839895;
-        public const double MILES_IN_KILOMETRES = 1.60935;
+        public const double MILES_IN_KILOMETRES = 1.609;
         public const int CENTIMETRES_IN_METRES = 100;
         public const int CENTIMETRES_IN_KILOMETRES = 100000;
         public const int CENTIMETRES_IN_MILES = 160935;
@@ -51,6 +51,14 @@ namespace ConsoleAppProject.App01
 
         public double ToDistance { get; set; }
         public int FromDistance { get; set; }
+
+        public DistanceUnits DistanceUnits
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         public DistanceConverter()
         {
@@ -233,11 +241,11 @@ namespace ConsoleAppProject.App01
             }
             else if (fromUnit == MILES && ToUnit == KILOMETRES)
             {
-                toDistance = fromDistance / MILES_IN_KILOMETRES;
+                toDistance = fromDistance * MILES_IN_KILOMETRES;
             }
             else if (fromUnit == KILOMETRES && ToUnit == MILES)
             {
-                toDistance = fromDistance * MILES_IN_KILOMETRES;
+                toDistance = fromDistance / MILES_IN_KILOMETRES;
             }
             else if (fromUnit == CENTIMETRES && ToUnit == METRES)
             {
@@ -273,11 +281,11 @@ namespace ConsoleAppProject.App01
             }
             else if (fromUnit == METRES && ToUnit == MILIMETRES)
             {
-                toDistance = fromDistance / METRES_IN_MILIMETRES;
+                toDistance = fromDistance * METRES_IN_MILIMETRES;
             }
             else if (fromUnit == MILIMETRES && ToUnit == METRES)
             {
-                toDistance = fromDistance * METRES_IN_MILIMETRES;
+                toDistance = fromDistance / METRES_IN_MILIMETRES;
             }
             else if (fromUnit == MILIMETRES && ToUnit == KILOMETRES)
             {
@@ -289,19 +297,19 @@ namespace ConsoleAppProject.App01
             }
             else if (fromUnit == CENTIMETRES && ToUnit == MILIMETRES)
             {
-                toDistance = fromDistance / CENTIMETRES_IN_MILIMETRES;
+                toDistance = fromDistance * CENTIMETRES_IN_MILIMETRES;
             }
             else if (fromUnit == MILIMETRES && ToUnit == CENTIMETRES)
             {
-                toDistance = fromDistance * CENTIMETRES_IN_MILIMETRES;
+                toDistance = fromDistance / CENTIMETRES_IN_MILIMETRES;
             }
             else if (fromUnit == MILES && ToUnit == MILIMETRES)
             {
-                toDistance = fromDistance / MILES_IN_MILIMETRES;
+                toDistance = fromDistance * MILES_IN_MILIMETRES;
             }
             else if (fromUnit == MILIMETRES && ToUnit == MILES)
             {
-                toDistance = fromDistance * MILES_IN_MILIMETRES;
+                toDistance = fromDistance / MILES_IN_MILIMETRES;
             }
             else if (fromUnit == MILIMETRES && ToUnit == FEET)
             {

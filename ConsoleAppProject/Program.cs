@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
+using ConsoleAppProject.App03;
 using ConsoleAppProject.Helpers;
 
 namespace ConsoleAppProject
@@ -16,6 +19,7 @@ namespace ConsoleAppProject
     public static class Program
     {
         private static DistanceConverter converter = new DistanceConverter();
+        private static StudentGrades grade = new StudentGrades();
 
         public static BMI BMI
         {
@@ -26,6 +30,14 @@ namespace ConsoleAppProject
         }
 
         public static DistanceConverter DistanceConverter
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public static StudentGrades StudentGrades
         {
             get => default;
             set
@@ -45,9 +57,10 @@ namespace ConsoleAppProject
             Console.WriteLine(" =================================================");
             Console.WriteLine();
 
-            string[] menu = new string[2];
+            string[] menu = new string[3];
             menu[0] = " Distance Converter";
             menu[1] = " BMI Calculator";
+            menu[2] = " Student Marks";
             int choice = ConsoleHelper.SelectChoice(menu);
             Console.WriteLine();
 
@@ -58,6 +71,10 @@ namespace ConsoleAppProject
             else if (choice == 2)
             {
                 calculator.CalculateIndex();
+            }
+            else if (choice == 3)
+            {
+                grade.DisplayMenu();
             }
             else
             {

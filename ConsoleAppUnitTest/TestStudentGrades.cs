@@ -50,6 +50,22 @@ namespace ConsoleAppUnitTest
         }
 
         [TestMethod]
+        public void TestConvert49ToGradeF()
+        {
+            // Arrange
+
+            Grades expectedGrade = Grades.F;
+
+            // Act
+
+            Grades actualGrade = converter.ConvertToGrade(0);
+
+            // Assert
+
+            Assert.AreEqual(expectedGrade, actualGrade);
+        }
+
+        [TestMethod]
 
         public void TestCalculateMean()
         {

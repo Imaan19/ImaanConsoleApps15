@@ -20,6 +20,7 @@ namespace ConsoleAppProject
     {
         private static DistanceConverter converter = new DistanceConverter();
         private static StudentGrades grade = new StudentGrades();
+        private static studentMarks marks = new studentMarks();
 
         public static BMI BMI
         {
@@ -74,13 +75,17 @@ namespace ConsoleAppProject
             }
             else if (choice == 3)
             {
-                grade.DisplayMenu();
+                grade.DisplayChoices();
             }
             else
             {
                 Console.WriteLine(" Invalid Choice !");
             }
 
+        }
+
+        private class studentMarks
+        {
         }
     }
 }

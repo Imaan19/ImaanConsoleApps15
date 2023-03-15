@@ -161,5 +161,14 @@ namespace ConsoleAppProject.Helpers
             Console.WriteLine("\n");
             Console.ResetColor();
         }
+
+        public static int DisplayMenu(string[] choices)
+        {
+            DisplayMenu(choices);
+            
+            int choiceNo = (int)InputNumber("\n Please enter your choice > ",
+                                            1, choices.Length);
+            return choiceNo;
+        }
     }
 }

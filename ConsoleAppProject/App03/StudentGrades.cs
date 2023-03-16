@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 using ConsoleAppProject.Helpers;
@@ -22,31 +23,20 @@ namespace ConsoleAppProject.App03
         public const int LowestGradeB = 60;
         public const int LowestGradeA = 70;
         public const int HighestMark = 100;
-        private IEnumerable<KeyValuePair<string, int>> studentMarks;
+        Dictionary<string, int> studentMarks = new Dictionary<string, int>();
+        private bool validInput;
+        private bool boolvalidInput;
 
         // Properties
         public string[] Students { get; set; }
-
-        public string[] GetAllStudents { get; set; }
-
         public int[] Marks { get; set; }
-
-        public string[] Grade { get; set; }
-
-        public int[] Stats { get; set; }
-
         public int[] GradeProfile { get; set; }
-
         public double Mean { get; set; }
-
         public int Minimum { get; set; }
-
         public int Maximum { get; set; }
 
-        // Attributes
-
         /// <summary>
-        ///  Student names 
+        /// Student names 
         /// </summary>
         public StudentGrades()
         {
@@ -54,7 +44,7 @@ namespace ConsoleAppProject.App03
                     {
                 "Alisha", "Eric", "Haroon",
                 "Hasan", "Hamza", "Jack",
-                "Lilly", "Liam", "Shaun", "Shannice"
+                "Lilly", "Liam", "Shaun", "Sara"
                     };
 
             GradeProfile = new int[(int)Grades.A + 1];
@@ -105,33 +95,54 @@ namespace ConsoleAppProject.App03
         /// Enter the students name alongside
         /// the students mark to Input it
         /// </summary>
-        private void InputMarks()
+        public void InputMarks()
         {
-            Console.Write(" Enter the name of the student: ");
-            string name = Console.ReadLine();
+            for (int i = 0; i < Students.Length; i++)
 
-            Console.Write(" Enter the mark for " + name + ": ");
-            int mark = int.Parse(Console.ReadLine());
+            {
+                bool validInput = false;
+                int mark = 0;
+                while (!validInput)
+                {
+                    Console.Write($" Enter mark for {Students[i]};");
+                    string input = Console.ReadLine();
 
-            Console.WriteLine(" Mark " + mark + " added for " + name);
+                    if (!int.TryParse(input, out mark))
+                    {
+                        Console.WriteLine("as");
+                    }
+                    else
+                    {
+                        validInput = true;
+                    }
+                }
+                Marks[i] = mark;
+
+            }
+            Console.WriteLine();
+            Console.ReadKey();
         }
 
         /// <summary>
         /// Output all the students name alongside
         /// their marks and grades
         /// </summary>
-        
+        /// 
         public void OutputMarks()
         {
-            Console.WriteLine("  Marks:");
-            Console.WriteLine("  Alisha Mark = 42,  Grade = D");
+            ConsoleHelper.OutputHeading(" Each students marks ");
 
-            foreach (KeyValuePair<string, int> studentMark in studentMarks)
+            for (int i = 0; i < Students.Length; i++)
             {
-                Console.WriteLine(studentMark.Key + ": " + studentMark.Value);
+                int mark = Marks[i];
+                Grades grades = ConvertToGrade(mark);
+                Console.WriteLine($"Student Name: {Students[i]} \tStudent Mark: {mark}\t" +
+                    $"Student Grade: {grades}\t");
             }
+            Console.WriteLine();
+            ConsoleHelper.OutputHeading("\t\t Student Marks");
+            DisplayChoices();
         }
-
         /// <summary>
         /// Converting the students marks into grades
         /// </summary>
@@ -142,23 +153,23 @@ namespace ConsoleAppProject.App03
             {
                 return Grades.F;
             }
-            else if (mark >= LowestGradeD && mark < LowestGradeC)
+            else if (mark < LowestGradeC)
             {
                 return Grades.D;
             }
-            else if (mark >= LowestGradeC && mark < LowestGradeB)
+            else if (mark < LowestGradeB)
             {
                 return Grades.C;
             }
-            else if (mark >= LowestGradeB && mark < LowestGradeA)
+            else if (mark < LowestGradeA)
             {
                 return Grades.B;
             }
-            else if (mark >= LowestGradeA && mark < HighestMark)
+            else 
             {
                 return Grades.A;
             }
-            return Grades.F;
+
         }
 
         /// <summary>
@@ -185,7 +196,16 @@ namespace ConsoleAppProject.App03
 
         public void OutputStats()
         {
+            CalculateStats();
 
+            double overallMean = Mean;
+            Console.WriteLine($" Mean: {overallMean.ToString("F")}");
+
+            int minimumMark = Minimum;
+            Console.WriteLine($" Minimum mark: {minimumMark}");
+
+            int maximumMark = Maximum;
+            Console.WriteLine($" Maximum mark: {maximumMark}");
         }
 
         /// <summary>
@@ -204,22 +224,44 @@ namespace ConsoleAppProject.App03
                 GradeProfile[(int)grade]++;
             }
 
-            OutputGradeProfile();
+            //OutputGradeProfile();
         }
 
         public void OutputGradeProfile()
         {
-            Grades grade = Grade.X;
-            Console.WriteLine();
+            int[] gradeCounts = new int[5];
+            int highestMark = 0;
+            int lowestMark = 100;
 
-            foreach(int count in GradeProfile)
+            foreach (int mark in Marks)
             {
-                int percentage = count * 100 / Marks.Length;
-                Console.WriteLine($"Grade {grade} {percentage}% Count {count}");
-                grade++;
+                if (mark >= LowestGradeA)
+                {
+                    gradeCounts[4]++;
+                    if (mark > highestMark) highestMark = mark;
+                    if (mark < lowestMark) lowestMark = mark;
+                }
+                else if (mark >= LowestGradeB)
+                {
+                    gradeCounts[3]++;
+                    if (mark < LowestMark) lowestMark = mark;
+                }
+                else if (mark >= LowestGradeC)
+                {
+                    gradeCounts[2]++;
+                    if (mark < LowestMark) lowestMark= mark;
+                }
+                else if (mark >= LowestGradeD)
+                {
+                    gradeCounts[1]++;
+                    if (mark < LowestMark) lowestMark = mark;
+                }
+                else
+                {
+                    gradeCounts[0]++;
+                    if (mark < LowestMark) lowestMark = mark;
+                }
             }
-
-            Console.WriteLine();
         }
     }
 }

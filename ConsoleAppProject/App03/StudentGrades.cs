@@ -10,8 +10,9 @@ using ConsoleAppProject.Helpers;
 namespace ConsoleAppProject.App03
 {
     /// <summary>
-    /// At the moment this class just tests the
-    /// Grades enumeration names and descriptions
+    /// This application allows the user to Input the students
+    /// names, marks and grades to output the mean, minimum
+    /// and maximum grades along with a Gradeprofile of the students.
     /// </summary>
     public class StudentGrades
     {
@@ -184,7 +185,7 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// Calculating the minimum and 
+        /// Calculating the mean, minimum and 
         /// maximum stats for each mark
         /// </summary>
 
@@ -205,6 +206,10 @@ namespace ConsoleAppProject.App03
             Mean = total / Marks.Length;
         }
 
+        /// <summary>
+        /// Output the mean, minumum and maximum
+        /// stats of the students grades inputted.
+        /// </summary>
         public void OutputStats()
         {
             CalculateStats();
@@ -220,7 +225,8 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// 
+        /// Calculate the Gradeprofile for each 
+        /// student depending on their mark. 
         /// </summary>
 
         public void CalculateGradeProfile()
@@ -237,6 +243,11 @@ namespace ConsoleAppProject.App03
 
             OutputGradeProfile();
         }
+
+        /// <summary>
+        /// Output the Gradeprofile for each student
+        /// depending on their mark obtained. 
+        /// </summary>
 
         public void OutputGradeProfile()
         {

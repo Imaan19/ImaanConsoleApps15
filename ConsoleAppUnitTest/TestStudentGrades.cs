@@ -3,6 +3,7 @@ using ConsoleAppProject.App03;
 
 namespace ConsoleAppUnitTest
 {
+    [TestClass]
     public class StudentGradesTest
     {
         private readonly StudentGrades studentGrades = new StudentGrades();

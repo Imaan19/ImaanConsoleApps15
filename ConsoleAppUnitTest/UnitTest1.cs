@@ -12,7 +12,7 @@ namespace ConsoleAppUnitTest
             converter.ToUnit = "miles";
             converter.FromDistance = 10560;
 
-            converter.ConvertDistance();
+            converter.CalculateDistance();
 
             double expectedOutput = 2.0;
 

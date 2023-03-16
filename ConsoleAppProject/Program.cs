@@ -46,6 +46,14 @@ namespace ConsoleAppProject
             }
         }
 
+        public static StudentGrades StudentGrades1
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public static void Main(string[] args)
         {
             BMI calculator = new BMI();

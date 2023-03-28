@@ -4,6 +4,7 @@ using System.Reflection;
 using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
+using ConsoleAppProject.App04;
 using ConsoleAppProject.Helpers;
 
 namespace ConsoleAppProject
@@ -21,6 +22,7 @@ namespace ConsoleAppProject
         private static DistanceConverter converter = new DistanceConverter();
         private static StudentGrades grade = new StudentGrades();
         private static studentMarks marks = new studentMarks();
+        private static Networkapp app04 = new Networkapp();
 
         public static BMI BMI
         {
@@ -66,10 +68,11 @@ namespace ConsoleAppProject
             Console.WriteLine(" =================================================");
             Console.WriteLine();
 
-            string[] menu = new string[3];
+            string[] menu = new string[4];
             menu[0] = " Distance Converter";
             menu[1] = " BMI Calculator";
             menu[2] = " Student Marks";
+            menu[3] = " Social Network";
             int choice = ConsoleHelper.SelectChoice(menu);
             Console.WriteLine();
 
@@ -84,6 +87,10 @@ namespace ConsoleAppProject
             else if (choice == 3)
             {
                 grade.DisplayChoices();
+            }
+            else if (choice == 4)
+            {
+                app04.DisplayMenu();
             }
             else
             {

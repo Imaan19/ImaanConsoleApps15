@@ -1,25 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ConsoleAppProject.App04
 {
     public class Post
     {
-        private int likes;
-
-        private readonly List<String> comments;
-
+        public int PostId { get; }
 
         // username of the post's author
         public String Username { get; }
 
         public DateTime Timestamp { get; }
 
+        private static int instances = 0;
+        
+        private int likes;
+
+        private readonly List<String> comments;
+
+
         /// <summary>
         /// 
         /// </summary>
         public Post(string author)
         {
+            instances++;
+            PostId = instances;
+
             this.Username = author;
             Timestamp = DateTime.Now;
 
@@ -64,9 +73,10 @@ namespace ConsoleAppProject.App04
         /// (Currently: Print to the text terminal. This is simulating display 
         /// in a web browser for now.)
         ///</summary>
-        public void Display()
+        public virtual void Display()
         {
             Console.WriteLine();
+            Console.WriteLine($"    Post ID: {PostId}");
             Console.WriteLine($"    Author: {Username}");
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
@@ -86,7 +96,7 @@ namespace ConsoleAppProject.App04
             }
             else
             {
-                Console.WriteLine($"    {comments.Count}  comment(s). Click here to view.");
+                Console.WriteLine($"    Comments: {comments.Count} peoples comments.");
             }
         }
 
@@ -117,6 +127,11 @@ namespace ConsoleAppProject.App04
             {
                 return seconds + " seconds ago";
             }
+        }
+
+        internal static double GetNumberOfPosts()
+        {
+            throw new NotImplementedException();
         }
     }
 }

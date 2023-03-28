@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 
 namespace ConsoleAppProject.App04
@@ -20,16 +21,65 @@ namespace ConsoleAppProject.App04
     ///</author> 
     public class NewsFeed
     {
+        public const string AUTHOR = "Imaan";
+
         private readonly List<Post> posts;
 
         ///<summary>
-        /// Construct an empty news feed.
+        /// Construct a news feed.
         ///</summary>
         public NewsFeed()
         {
             posts = new List<Post>();
+
+            MessagePost post = new MessagePost(AUTHOR, "I love playing football");
+            AddMessagePost(post);
+
+            PhotoPost photoPost = new PhotoPost(AUTHOR, "Football.jpg", "My Football Team");
+            AddPhotoPost(photoPost);
+
         }
 
+        public void UnlikePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post != null)
+            {
+                post.Unlike();
+            }
+            else
+            {
+                Console.WriteLine(" Error: ID not found ");
+            }
+        }
+
+        public void LikePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post != null)
+            {
+                post.Like();
+            }
+            else
+            {
+                Console.WriteLine(" Error: ID not found ");
+            }
+        }
+        public void AddComment(int id, string comment)
+        {
+            Post post = FindPost(id);
+
+            if (post != null)
+            {
+                post.AddComment(comment);
+            }
+            else
+            {
+                Console.WriteLine(" Error: ID not found ");
+            }
+        }
 
         ///<summary>
         /// Add a text post to the news feed.
@@ -50,6 +100,38 @@ namespace ConsoleAppProject.App04
         {
             posts.Add(photo);
         }
+
+        public void RemovePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($" \nPost with ID = {id} does not exist!!\n");
+            }
+            else
+            {
+                Console.WriteLine($" \nThe following Post {id} has been removed!\n");
+
+                posts.Remove(post);
+                post.Display();
+            }
+        }
+
+        public Post FindPost(int id)
+        {
+            foreach (Post post in posts)
+            {
+                if(post.PostId == id)
+                {
+                    return post;
+                }
+            }
+
+            return null;
+        }
+
+
 
         ///<summary>
         /// Show the news feed. Currently: print the news feed details to the

@@ -9,20 +9,29 @@ namespace ConsoleAppProject.App04
     {
         public int PostId { get; }
 
-        // username of the post's author
+        /// <summary>
+        /// Username of the post's author
+        /// </summary>
         public String Username { get; }
 
+        /// <summary>
+        /// Properties
+        /// </summary>
         public DateTime Timestamp { get; }
+        public static double Count { get; private set; }
+        public IEnumerable<Post> posts { get; private set; }
 
         private static int instances = 0;
         
         private int likes;
 
+        private int unlikes;
+
         private readonly List<String> comments;
 
 
         /// <summary>
-        /// 
+        /// Post Class
         /// </summary>
         public Post(string author)
         {
@@ -69,9 +78,6 @@ namespace ConsoleAppProject.App04
 
         ///<summary>
         /// Display the details of this post.
-        /// 
-        /// (Currently: Print to the text terminal. This is simulating display 
-        /// in a web browser for now.)
         ///</summary>
         public virtual void Display()
         {
@@ -81,11 +87,15 @@ namespace ConsoleAppProject.App04
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
 
-            if (likes > 0)
+            if (likes >= 0)
             {
-                Console.WriteLine($"    Likes:  {likes}  people like this.");
+                Console.WriteLine($"    Likes:  {likes}  people liked this.");
             }
-            else
+            if (unlikes < 0)
+            {
+                Console.WriteLine($"    Unlikes:  {unlikes}  people unliked this. ");
+            }
+            else 
             {
                 Console.WriteLine();
             }
@@ -97,6 +107,8 @@ namespace ConsoleAppProject.App04
             else
             {
                 Console.WriteLine($"    Comments: {comments.Count} peoples comments.");
+                foreach (string comment in comments)
+                    Console.WriteLine("   " +  comment);
             }
         }
 
@@ -127,11 +139,6 @@ namespace ConsoleAppProject.App04
             {
                 return seconds + " seconds ago";
             }
-        }
-
-        internal static double GetNumberOfPosts()
-        {
-            throw new NotImplementedException();
         }
     }
 }

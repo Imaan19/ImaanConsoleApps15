@@ -39,7 +39,7 @@ namespace ConsoleAppProject.App04
         }
 
         /// <summary>
-        /// 
+        /// A Display for the filename and caption
         /// </summary>
         /// 
         public override void Display()

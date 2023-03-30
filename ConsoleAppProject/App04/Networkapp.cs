@@ -9,8 +9,16 @@ namespace ConsoleAppProject.App04
     {
         private NewsFeed news = new NewsFeed();
 
+        public NewsFeed NewsFeed
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
-        /// 
+        /// Menu Displayed for Choices
         /// </summary>
         public void DisplayMenu()
         {
@@ -49,30 +57,48 @@ namespace ConsoleAppProject.App04
             } while (!wantToQuit);
         }
 
+        /// <summary>
+        /// Display authors posts method
+        /// </summary>
         private void DisplayByAuthor()
         {
             ConsoleHelper.OutputTitle($" All Posts Displayed by Author ");
             Console.WriteLine();
 
-            
-
-
+            string author = InputName();
+            news.DisplayByAuthor( author );
         }
 
+        /// <summary>
+        /// Method for Removing a Post
+        /// </summary>
         private void RemovePost()
         {
             ConsoleHelper.OutputTitle($" Removing a Post ");
 
-            int id = (int)ConsoleHelper.InputNumber(" Please enter the post id > ",
-                                                    1, Post.GetNumberOfPosts());
-            news.RemovePost(id);
+            int id = (int)ConsoleHelper.InputNumber(" Please enter the post id > ");
+            Post post = news.FindPost(id);
+            
+            if (post != null)
+                news.RemovePost(id);
+            else
+            {
+                Console.WriteLine(" That ID does not exist ");
+            }
+
         }
 
+        /// <summary>
+        /// Display all the Posts
+        /// </summary>
         private void DisplayAll()
         {
             news.Display();
         }
 
+        /// <summary>
+        /// Method for Posting an Image
+        /// </summary>
         private void PostImage()
         {
             ConsoleHelper.OutputTitle("Posting an Image");
@@ -92,6 +118,9 @@ namespace ConsoleAppProject.App04
             post.Display();
         }
 
+        /// <summary>
+        /// Method for when Inputting a name
+        /// </summary>
         private string InputName()
         {
             Console.Write(" Please enter your name > ");
@@ -100,6 +129,9 @@ namespace ConsoleAppProject.App04
             return author;
         }
 
+        /// <summary>
+        /// Method for Posting a message
+        /// </summary>
         private void PostMessage()
         {
             ConsoleHelper.OutputTitle(" Posting a Message ");
@@ -116,6 +148,9 @@ namespace ConsoleAppProject.App04
             post.Display();
         }
 
+        /// <summary>
+        /// Method for Unliking a Post
+        /// </summary>
         private void UnlikePosts()
         {
             Console.WriteLine(" UnLiking a Post ");
@@ -125,6 +160,10 @@ namespace ConsoleAppProject.App04
 
             news.UnlikePost(id);
         }
+
+        /// <summary>
+        /// Method to like a post
+        /// </summary>
         private void LikePosts()
         {
             Console.WriteLine(" Liking a Post ");
@@ -135,6 +174,9 @@ namespace ConsoleAppProject.App04
             news.LikePost(id);
         }
 
+        /// <summary>
+        /// Method for adding a comment to a post
+        /// </summary>
         private void AddComment()
         {
             Console.WriteLine(" Adding a comment to a post ");

@@ -56,6 +56,14 @@ namespace ConsoleAppProject
             }
         }
 
+        public static Post Post
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public static void Main(string[] args)
         {
             BMI calculator = new BMI();
